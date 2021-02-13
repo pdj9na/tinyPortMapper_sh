@@ -1,3 +1,9 @@
 /*
+!.gitignore
 !*.sh
 !LICENSE
+
+!/win
+/win/*
+!/win/*.ps1
+!/win/*任务计划程序.xml
