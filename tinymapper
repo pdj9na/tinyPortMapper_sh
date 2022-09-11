@@ -1,0 +1,28 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2006 OpenWrt.org
+START=36
+STOP=84
+
+#DIR=$(uci -q get network.@_addition_globals[0].dir)
+#test -z "$DIR" && exit
+
+basescript=$(readlink -f "$initscript")
+
+_basedir=${basescript%/*}
+MAINEXEC=$_basedir/tinymapper.sh
+
+start() {
+	test ! -e /var/run/tinymapper.pid && {
+		# q 表示抑制日志输出
+		$MAINEXEC q &
+		echo $! >/var/run/tinymapper.pid
+	}
+}
+
+stop() {
+	test -r /var/run/tinymapper.pid && {
+		kill $(cat /var/run/tinymapper.pid)
+		rm -f /var/run/tinymapper.pid
+	}
+}
+
