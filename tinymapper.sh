@@ -8,10 +8,6 @@
 # 添加依赖服务：主机网络服务
 
 
-# ================ record 配置文件格式 =============
-# 本地IP 远程IP或域名 本地:远程（域名解析IP的版本，只在解析域名时使用） telnet端口（只能是TCP） 端口映射（本地:远程,...） 
-# 0.0.0.0 域名 :6 135:80 123:456,122:455,...
-
 # -------------------------------
 
 # 读取域名的IP地址 domainName remoteIPTag
@@ -193,11 +189,6 @@ requestNoTimeout(){
 main(){
 
 #local ipportPatterns='';
-
-if test ! -r $RECORD_FILE;then
-	mkdir -p ${RECORD_FILE%/*}
-	touch $RECORD_FILE
-fi
 
 if test x$1 = x;then
 
